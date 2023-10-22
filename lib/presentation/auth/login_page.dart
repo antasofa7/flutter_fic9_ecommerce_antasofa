@@ -43,7 +43,7 @@ class _LoginPageState extends State<LoginPage> {
           const SpaceHeight(24.0),
           const Center(
             child: Text(
-              "FIC 9",
+              "E-Commerce Code with Antasofa",
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w700,
