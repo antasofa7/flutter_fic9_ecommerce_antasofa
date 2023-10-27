@@ -1,11 +1,15 @@
 import 'package:fic9_ecommerce_template_app/common/constants/images.dart';
+import 'package:fic9_ecommerce_template_app/common/extensions/on_context.dart';
+import 'package:fic9_ecommerce_template_app/data/models/models.dart';
 import 'package:fic9_ecommerce_template_app/presentation/home/dashboard_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../common/components/button.dart';
-import '../../common/components/custom_text_field.dart';
-import '../../common/components/space_height.dart';
-import '../../common/constants/colors.dart';
+import '../../../common/components/button.dart';
+import '../../../common/components/custom_text_field.dart';
+import '../../../common/components/space_height.dart';
+import '../../../common/constants/colors.dart';
+import '../bloc/login/login_bloc.dart';
 import 'register_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -16,12 +20,12 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final usernameController = TextEditingController();
+  final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
   @override
   void dispose() {
-    usernameController.dispose();
+    emailController.dispose();
     passwordController.dispose();
     super.dispose();
   }
@@ -64,8 +68,8 @@ class _LoginPageState extends State<LoginPage> {
           ),
           const SpaceHeight(40.0),
           CustomTextField(
-            controller: usernameController,
-            label: 'Username',
+            controller: emailController,
+            label: 'Alamat Email',
           ),
           const SpaceHeight(12.0),
           CustomTextField(
@@ -74,17 +78,27 @@ class _LoginPageState extends State<LoginPage> {
             obscureText: true,
           ),
           const SpaceHeight(24.0),
-          Button.filled(
-            onPressed: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const DashboardPage(),
-                ),
-              );
-            },
-            label: 'Masuk',
-          ),
+          BlocConsumer<LoginBloc, LoginState>(
+              listener: (context, state) => state.maybeWhen(
+                    orElse: () => null,
+                    success: (data) =>
+                        context.to(removed: true, child: const DashboardPage()),
+                    failed: (message) => context.alert(content: message),
+                  ),
+              builder: (context, state) => state.maybeWhen(
+                  orElse: () => Button.filled(
+                        onPressed: () {
+                          final data = LoginRequestModel(
+                              identifier: emailController.text,
+                              password: passwordController.text);
+
+                          context.read<LoginBloc>().add(LoginEvent.login(data));
+                        },
+                        label: 'Masuk',
+                      ),
+                  loading: () => const Center(
+                        child: CircularProgressIndicator(),
+                      ))),
           const SpaceHeight(122.0),
           Center(
             child: InkWell(
@@ -102,11 +116,13 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     TextSpan(
                       text: "Register",
-                      style: TextStyle(color: ColorName.primary),
+                      style: TextStyle(
+                        color: ColorName.primary,
+                      ),
                     ),
                   ],
                   style: TextStyle(
-                    fontSize: 12,
+                    fontSize: 16,
                     fontWeight: FontWeight.w700,
                     color: ColorName.grey,
                   ),

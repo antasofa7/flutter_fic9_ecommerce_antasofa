@@ -1,10 +1,15 @@
+import 'package:fic9_ecommerce_template_app/common/extensions/on_context.dart';
+import 'package:fic9_ecommerce_template_app/presentation/auth/screens/login_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../common/components/button.dart';
-import '../../common/components/custom_text_field.dart';
-import '../../common/components/space_height.dart';
-import '../../common/constants/colors.dart';
-import '../../common/constants/images.dart';
+import '../../../common/components/button.dart';
+import '../../../common/components/custom_text_field.dart';
+import '../../../common/components/space_height.dart';
+import '../../../common/constants/colors.dart';
+import '../../../common/constants/images.dart';
+import '../../../data/models/models.dart';
+import '../bloc/register/register_bloc.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -31,6 +36,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       body: ListView(
         padding: const EdgeInsets.all(16.0),
         children: [
@@ -87,11 +93,33 @@ class _RegisterPageState extends State<RegisterPage> {
             obscureText: true,
           ),
           const SpaceHeight(24.0),
-          Button.filled(
-            onPressed: () {
-              Navigator.pop(context);
+          BlocConsumer<RegisterBloc, RegisterState>(
+            listener: (_, state) => state.maybeWhen(
+              orElse: () => null,
+              success: (data) => context.to(child: const LoginPage()),
+              failed: (message) => context.alert(content: message),
+            ),
+            builder: (context, state) {
+              return state.maybeWhen(
+                orElse: () => Button.filled(
+                  onPressed: () {
+                    final data = RegisterRequestModel(
+                        name: nameController.text,
+                        password: passwordController.text,
+                        email: emailController.text,
+                        username: nameController.text.replaceAll(' ', ''));
+
+                    context
+                        .read<RegisterBloc>()
+                        .add(RegisterEvent.register(data));
+                  },
+                  label: 'Daftar',
+                ),
+                loading: () => const Center(
+                  child: CircularProgressIndicator(),
+                ),
+              );
             },
-            label: 'Daftar',
           ),
           const SpaceHeight(60.0),
           Center(
@@ -105,11 +133,13 @@ class _RegisterPageState extends State<RegisterPage> {
                   children: [
                     TextSpan(
                       text: "Sign In",
-                      style: TextStyle(color: ColorName.primary),
+                      style: TextStyle(
+                        color: ColorName.primary,
+                      ),
                     ),
                   ],
                   style: TextStyle(
-                    fontSize: 12,
+                    fontSize: 16,
                     fontWeight: FontWeight.w700,
                     color: ColorName.grey,
                   ),

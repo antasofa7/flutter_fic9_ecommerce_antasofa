@@ -1,6 +1,7 @@
-import 'package:fic9_ecommerce_template_app/common/constants/images.dart';
-import 'package:fic9_ecommerce_template_app/presentation/auth/login_page.dart';
 import 'package:flutter/material.dart';
+
+import '../../../common/common.dart';
+import 'login_page.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
