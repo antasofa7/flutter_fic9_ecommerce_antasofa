@@ -1,8 +1,9 @@
 import 'package:fic9_ecommerce_template_app/common/constants/images.dart';
-import 'package:fic9_ecommerce_template_app/presentation/home/home_page.dart';
+import 'package:fic9_ecommerce_template_app/presentation/cart/screens/cart_page.dart';
+import 'package:fic9_ecommerce_template_app/presentation/home/screens/home_page.dart';
 import 'package:flutter/material.dart';
 
-import '../../common/constants/colors.dart';
+import '../../../common/constants/colors.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
@@ -19,7 +20,7 @@ class _DashboardPageState extends State<DashboardPage> {
     const Center(
       child: Text('Explore Page'),
     ),
-    const Center(child: Text('Cart Page')),
+    const CartPage(),
     const Center(child: Text('Account Page')),
   ];
 

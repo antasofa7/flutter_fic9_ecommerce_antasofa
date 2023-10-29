@@ -5,12 +5,12 @@ part 'auth_response_model.g.dart';
 @freezed
 class AuthResponseModel with _$AuthResponseModel {
   const factory AuthResponseModel({
-    @Default('') String id,
+    @Default(0) int id,
     @Default('') String username,
     @Default('') String email,
     @Default('') String provider,
-    @Default('') String confirmed,
-    @Default('') String blocked,
+    @Default(true) bool confirmed,
+    @Default(true) bool blocked,
   }) = _AuthResponseModel;
 
   factory AuthResponseModel.fromJson(Map<String, dynamic> json) =>

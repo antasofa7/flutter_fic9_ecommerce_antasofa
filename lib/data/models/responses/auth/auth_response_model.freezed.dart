@@ -20,12 +20,12 @@ AuthResponseModel _$AuthResponseModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$AuthResponseModel {
-  String get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   String get username => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String get provider => throw _privateConstructorUsedError;
-  String get confirmed => throw _privateConstructorUsedError;
-  String get blocked => throw _privateConstructorUsedError;
+  bool get confirmed => throw _privateConstructorUsedError;
+  bool get blocked => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -40,12 +40,12 @@ abstract class $AuthResponseModelCopyWith<$Res> {
       _$AuthResponseModelCopyWithImpl<$Res, AuthResponseModel>;
   @useResult
   $Res call(
-      {String id,
+      {int id,
       String username,
       String email,
       String provider,
-      String confirmed,
-      String blocked});
+      bool confirmed,
+      bool blocked});
 }
 
 /// @nodoc
@@ -72,7 +72,7 @@ class _$AuthResponseModelCopyWithImpl<$Res, $Val extends AuthResponseModel>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       username: null == username
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
@@ -88,11 +88,11 @@ class _$AuthResponseModelCopyWithImpl<$Res, $Val extends AuthResponseModel>
       confirmed: null == confirmed
           ? _value.confirmed
           : confirmed // ignore: cast_nullable_to_non_nullable
-              as String,
+              as bool,
       blocked: null == blocked
           ? _value.blocked
           : blocked // ignore: cast_nullable_to_non_nullable
-              as String,
+              as bool,
     ) as $Val);
   }
 }
@@ -106,12 +106,12 @@ abstract class _$$AuthResponseModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id,
+      {int id,
       String username,
       String email,
       String provider,
-      String confirmed,
-      String blocked});
+      bool confirmed,
+      bool blocked});
 }
 
 /// @nodoc
@@ -136,7 +136,7 @@ class __$$AuthResponseModelImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       username: null == username
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
@@ -152,11 +152,11 @@ class __$$AuthResponseModelImplCopyWithImpl<$Res>
       confirmed: null == confirmed
           ? _value.confirmed
           : confirmed // ignore: cast_nullable_to_non_nullable
-              as String,
+              as bool,
       blocked: null == blocked
           ? _value.blocked
           : blocked // ignore: cast_nullable_to_non_nullable
-              as String,
+              as bool,
     ));
   }
 }
@@ -165,19 +165,19 @@ class __$$AuthResponseModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AuthResponseModelImpl implements _AuthResponseModel {
   const _$AuthResponseModelImpl(
-      {this.id = '',
+      {this.id = 0,
       this.username = '',
       this.email = '',
       this.provider = '',
-      this.confirmed = '',
-      this.blocked = ''});
+      this.confirmed = true,
+      this.blocked = true});
 
   factory _$AuthResponseModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$AuthResponseModelImplFromJson(json);
 
   @override
   @JsonKey()
-  final String id;
+  final int id;
   @override
   @JsonKey()
   final String username;
@@ -189,10 +189,10 @@ class _$AuthResponseModelImpl implements _AuthResponseModel {
   final String provider;
   @override
   @JsonKey()
-  final String confirmed;
+  final bool confirmed;
   @override
   @JsonKey()
-  final String blocked;
+  final bool blocked;
 
   @override
   String toString() {
@@ -237,18 +237,18 @@ class _$AuthResponseModelImpl implements _AuthResponseModel {
 
 abstract class _AuthResponseModel implements AuthResponseModel {
   const factory _AuthResponseModel(
-      {final String id,
+      {final int id,
       final String username,
       final String email,
       final String provider,
-      final String confirmed,
-      final String blocked}) = _$AuthResponseModelImpl;
+      final bool confirmed,
+      final bool blocked}) = _$AuthResponseModelImpl;
 
   factory _AuthResponseModel.fromJson(Map<String, dynamic> json) =
       _$AuthResponseModelImpl.fromJson;
 
   @override
-  String get id;
+  int get id;
   @override
   String get username;
   @override
@@ -256,9 +256,9 @@ abstract class _AuthResponseModel implements AuthResponseModel {
   @override
   String get provider;
   @override
-  String get confirmed;
+  bool get confirmed;
   @override
-  String get blocked;
+  bool get blocked;
   @override
   @JsonKey(ignore: true)
   _$$AuthResponseModelImplCopyWith<_$AuthResponseModelImpl> get copyWith =>

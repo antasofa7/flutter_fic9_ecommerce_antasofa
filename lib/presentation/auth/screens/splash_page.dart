@@ -1,3 +1,6 @@
+import 'package:fic9_ecommerce_template_app/common/extensions/on_context.dart';
+import 'package:fic9_ecommerce_template_app/data/datasources/auth_local_datasource.dart';
+import 'package:fic9_ecommerce_template_app/presentation/dashboard/screens/dashboard_page.dart';
 import 'package:flutter/material.dart';
 
 import '../../../common/common.dart';
@@ -12,17 +15,17 @@ class SplashPage extends StatefulWidget {
 
 class _SplashPageState extends State<SplashPage> {
   @override
-  Widget build(BuildContext context) {
+  void initState() {
     Future.delayed(
-      const Duration(milliseconds: 3000),
-      () => Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const LoginPage(),
-        ),
-      ),
-    );
+        const Duration(seconds: 1),
+        () => AuthLocalDatasource().isLoggedIn().then((isLoggedIn) => isLoggedIn
+            ? context.to(child: const DashboardPage())
+            : context.to(child: const LoginPage())));
+    super.initState();
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
           child: Image.asset(

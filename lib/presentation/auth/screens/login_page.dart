@@ -1,7 +1,7 @@
 import 'package:fic9_ecommerce_template_app/common/constants/images.dart';
 import 'package:fic9_ecommerce_template_app/common/extensions/on_context.dart';
 import 'package:fic9_ecommerce_template_app/data/models/models.dart';
-import 'package:fic9_ecommerce_template_app/presentation/home/dashboard_page.dart';
+import 'package:fic9_ecommerce_template_app/presentation/dashboard/screens/dashboard_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -20,8 +20,15 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
+  late final TextEditingController emailController;
+  late final TextEditingController passwordController;
+
+  @override
+  void initState() {
+    emailController = TextEditingController();
+    passwordController = TextEditingController();
+    super.initState();
+  }
 
   @override
   void dispose() {

@@ -1,12 +1,17 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:fic9_ecommerce_template_app/common/constants/variables.dart';
+import 'package:fic9_ecommerce_template_app/data/models/responses/products/products_response_model.dart';
 import 'package:flutter/material.dart';
 
 import '../../../common/components/space_height.dart';
 import '../../../common/constants/colors.dart';
 
 class ImageSlider extends StatefulWidget {
-  final List<String> items;
-  const ImageSlider({super.key, required this.items});
+  final List<String>? itemsFromAssets;
+  final List<ImageDataModel>? items;
+  final bool fromAsset;
+  const ImageSlider(
+      {super.key, this.items, this.itemsFromAssets, this.fromAsset = true});
 
   @override
   State<ImageSlider> createState() => _ImageSliderState();
@@ -21,14 +26,23 @@ class _ImageSliderState extends State<ImageSlider> {
     return Column(
       children: [
         CarouselSlider(
-          items: widget.items
-              .map((e) => Image.asset(
-                    e,
-                    height: 206.0,
-                    width: MediaQuery.of(context).size.width,
-                    fit: BoxFit.cover,
-                  ))
-              .toList(),
+          items: widget.fromAsset
+              ? widget.itemsFromAssets!
+                  .map((item) => Image.asset(
+                        item,
+                        height: 206.0,
+                        width: MediaQuery.of(context).size.width,
+                        fit: BoxFit.cover,
+                      ))
+                  .toList()
+              : widget.items!
+                  .map((item) => Image.network(
+                        Variables.baseUrl + item.attributes!.url.substring(1),
+                        height: 206.0,
+                        width: MediaQuery.of(context).size.width,
+                        fit: BoxFit.cover,
+                      ))
+                  .toList(),
           carouselController: _controller,
           options: CarouselOptions(
             autoPlay: true,
@@ -43,7 +57,10 @@ class _ImageSliderState extends State<ImageSlider> {
         const SpaceHeight(22.0),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: widget.items.asMap().entries.map((entry) {
+          children: (widget.fromAsset ? widget.itemsFromAssets : widget.items)!
+              .asMap()
+              .entries
+              .map((entry) {
             return GestureDetector(
               onTap: () => _controller.animateToPage(entry.key),
               child: Container(

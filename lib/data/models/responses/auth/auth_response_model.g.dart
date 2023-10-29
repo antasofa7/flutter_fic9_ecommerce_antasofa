@@ -9,12 +9,12 @@ part of 'auth_response_model.dart';
 _$AuthResponseModelImpl _$$AuthResponseModelImplFromJson(
         Map<String, dynamic> json) =>
     _$AuthResponseModelImpl(
-      id: json['id'] as String? ?? '',
+      id: json['id'] as int? ?? 0,
       username: json['username'] as String? ?? '',
       email: json['email'] as String? ?? '',
       provider: json['provider'] as String? ?? '',
-      confirmed: json['confirmed'] as String? ?? '',
-      blocked: json['blocked'] as String? ?? '',
+      confirmed: json['confirmed'] as bool? ?? true,
+      blocked: json['blocked'] as bool? ?? true,
     );
 
 Map<String, dynamic> _$$AuthResponseModelImplToJson(
