@@ -30,19 +30,23 @@ class ProductCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.network(
-              Variables.baseUrl +
-                  data.attributes!.images!.data!.first.attributes!.url
-                      .substring(1),
-              // width: 170.0,
-              // height: 112.0,
-              fit: BoxFit.cover,
+            Center(
+              child: Image.network(
+                Variables.baseUrl +
+                    data.attributes!.images!.data!.first.attributes!.url
+                        .substring(1),
+                // width: 170.0,
+                height: 160.0,
+                fit: BoxFit.cover,
+              ),
             ),
             const SpaceHeight(14.0),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
               child: Text(
                 data.attributes!.name,
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w400,

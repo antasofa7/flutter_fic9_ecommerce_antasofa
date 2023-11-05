@@ -30,6 +30,7 @@ class AuthLocalDatasource {
   Future<bool> isLoggedIn() async {
     final pref = await SharedPreferences.getInstance();
     final token = pref.getString(tokenKey) ?? '';
+
     return token.isNotEmpty;
   }
 

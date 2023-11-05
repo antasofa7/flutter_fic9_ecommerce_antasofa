@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../common/common.dart';
 import '../../../common/constants/images.dart' as local_images;
 import '../../../data/models/models.dart';
-import '../bloc/cart_bloc.dart';
+import '../bloc/cart/cart_bloc.dart';
 
 class CartItemWidget extends StatelessWidget {
   final CartModel data;

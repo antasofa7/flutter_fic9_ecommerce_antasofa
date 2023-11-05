@@ -7,9 +7,9 @@ import '../models.dart';
 class CartModel extends Equatable {
   final ProdutctDataModel product;
   int quantity;
-  int shippingCosts;
+  int deliveryPrice;
 
-  CartModel({required this.product, this.quantity = 0, this.shippingCosts = 0});
+  CartModel({required this.product, this.quantity = 0, this.deliveryPrice = 0});
 
   String get priceFormat =>
       int.parse(product.attributes!.price).currencyFormatRp;
@@ -18,7 +18,7 @@ class CartModel extends Equatable {
   List<Object?> get props => [
         'product: $product',
         'quantity: $quantity',
-        'shippingCosts: $shippingCosts',
+        'deliveryPrice: $deliveryPrice',
         'price: $priceFormat'
       ];
 }

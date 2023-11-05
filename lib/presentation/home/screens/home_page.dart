@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../common/components/search_input.dart';
 import '../../../common/components/space_height.dart';
 import '../../../common/constants/colors.dart';
-import '../../cart/bloc/cart_bloc.dart';
+import '../../cart/bloc/cart/cart_bloc.dart';
 import '../../cart/screens/cart_page.dart';
 import '../bloc/product/products_bloc.dart';
 import '../product_model.dart';

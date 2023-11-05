@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../data/models/models.dart';
+import '../../../../data/models/models.dart';
 
 part 'cart_event.dart';
 part 'cart_state.dart';
@@ -9,6 +9,13 @@ part 'cart_bloc.freezed.dart';
 
 class CartBloc extends Bloc<CartEvent, CartState> {
   CartBloc() : super(const _Success([])) {
+    on<_Started>(
+      (event, emit) {
+        emit(const _Loading());
+        emit(const _Success([]));
+      },
+    );
+
     on<_Add>((event, emit) {
       final currentState = state as _Success;
 

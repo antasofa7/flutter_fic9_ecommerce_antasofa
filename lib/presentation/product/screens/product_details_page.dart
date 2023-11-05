@@ -9,7 +9,7 @@ import 'package:fic9_ecommerce_template_app/presentation/home/widgets/image_slid
 import 'package:fic9_ecommerce_template_app/presentation/product/widgets/product_description_widget.dart';
 
 import '../../../data/models/models.dart';
-import '../../cart/bloc/cart_bloc.dart';
+import '../../cart/bloc/cart/cart_bloc.dart';
 import '../../cart/screens/cart_page.dart';
 import '../widgets/product_info_widget.dart';
 
@@ -59,7 +59,7 @@ class ProductDetailsPage extends StatelessWidget {
                       context.read<CartBloc>().add(CartEvent.add(CartModel(
                           product: product,
                           quantity: 1,
-                          shippingCosts: 80000)));
+                          deliveryPrice: 80000)));
                       context.to(child: const CartPage());
                     },
                     label: 'Add To Cart')),
