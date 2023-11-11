@@ -9,11 +9,13 @@ extension OnContext on BuildContext {
           : Navigator.push(
               this, MaterialPageRoute(builder: (context) => child));
 
+  void back<T extends Object?>({T? result}) => Navigator.pop(this, result);
+
   ScaffoldFeatureController<SnackBar, SnackBarClosedReason> alert(
-          {required String content}) =>
+          {required String content, Color? color}) =>
       ScaffoldMessenger.of(this).showSnackBar(SnackBar(
         content: Text(content),
-        backgroundColor: Colors.red[700],
+        backgroundColor: color ?? Colors.red[700],
         behavior: SnackBarBehavior.floating,
       ));
 }

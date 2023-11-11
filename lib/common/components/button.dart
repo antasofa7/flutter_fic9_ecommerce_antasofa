@@ -3,13 +3,12 @@ import 'package:flutter/material.dart';
 import '../constants/colors.dart';
 import 'space_height.dart';
 
-
 enum ButtonStyle { filled, outlined }
 
 class Button extends StatelessWidget {
   const Button.filled({
     super.key,
-    required this.onPressed,
+    this.onPressed,
     required this.label,
     this.style = ButtonStyle.filled,
     this.color = ColorName.primary,
@@ -24,7 +23,7 @@ class Button extends StatelessWidget {
 
   const Button.outlined({
     super.key,
-    required this.onPressed,
+    this.onPressed,
     required this.label,
     this.style = ButtonStyle.outlined,
     this.color = ColorName.white,
@@ -37,7 +36,7 @@ class Button extends StatelessWidget {
     this.fontSize = 16.0,
   });
 
-  final Function() onPressed;
+  final void Function()? onPressed;
   final String label;
   final ButtonStyle style;
   final Color color;

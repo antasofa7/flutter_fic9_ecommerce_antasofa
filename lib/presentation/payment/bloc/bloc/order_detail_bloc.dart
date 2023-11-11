@@ -14,7 +14,7 @@ class OrderDetailBloc extends Bloc<OrderDetailEvent, OrderDetailState> {
       emit(const _Loading());
 
       final response =
-          await OrderRemoteDataSource().getOrderById(event.orderId);
+          await OrderRemoteDataSource().retrieveOrderById(event.orderId);
 
       response.fold((failure) => emit(_Failed(failure)),
           (result) => emit(_Success(result)));

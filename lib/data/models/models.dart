@@ -5,3 +5,4 @@ export './requests/register_request_model.dart';
 export './responses/auth/auth_response_model.dart';
 export './responses/orders/orders_response_model.dart';
 export './responses/products/products_response_model.dart';
+export './responses/city/city_response_model.dart';

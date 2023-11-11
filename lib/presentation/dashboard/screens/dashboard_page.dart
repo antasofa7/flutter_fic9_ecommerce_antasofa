@@ -1,4 +1,6 @@
+import 'package:fic9_ecommerce_template_app/common/components/button.dart';
 import 'package:fic9_ecommerce_template_app/common/constants/images.dart';
+import 'package:fic9_ecommerce_template_app/data/datasources/auth_local_datasource.dart';
 import 'package:fic9_ecommerce_template_app/presentation/cart/screens/cart_page.dart';
 import 'package:fic9_ecommerce_template_app/presentation/home/screens/home_page.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +23,14 @@ class _DashboardPageState extends State<DashboardPage> {
       child: Text('Explore Page'),
     ),
     const CartPage(),
-    const Center(child: Text('Account Page')),
+    Center(
+        child: Button.outlined(
+      label: 'Logout',
+      onPressed: () {
+        AuthLocalDatasource().removeToken();
+        AuthLocalDatasource().removeUser();
+      },
+    )),
   ];
 
   void _onItemTapped(int index) {

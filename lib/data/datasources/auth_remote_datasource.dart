@@ -39,9 +39,12 @@ class AuthRemoteDatasource {
 
       if (response.statusCode == 200) {
         var responseMap = jsonDecode(response.body);
+        var user = AuthResponseModel.fromJson(responseMap['user']);
 
         AuthLocalDatasource().keepToken(responseMap['jwt']);
-        return right(AuthResponseModel.fromJson(responseMap['user']));
+        AuthLocalDatasource().saveUser(user);
+
+        return right(user);
       }
 
       return left('Server error');
