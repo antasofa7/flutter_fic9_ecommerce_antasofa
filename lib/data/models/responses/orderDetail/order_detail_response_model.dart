@@ -23,6 +23,9 @@ class AttributesModel with _$AttributesModel {
     @Default('') String courierName,
     @Default(0) int courierPrice,
     @Default('') String status,
+    @Default('-') String noResi,
+    @Default('-') String buyerId,
+    DateTime? createdAt,
   }) = _AttributesModel;
 
   factory AttributesModel.fromJson(Map<String, dynamic> json) =>

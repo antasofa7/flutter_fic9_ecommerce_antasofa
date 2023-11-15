@@ -49,14 +49,17 @@ class DataModel extends Equatable {
   final String courierName;
   final int courierPrice;
   final String status;
+  final int buyerId;
 
-  const DataModel(
-      {required this.items,
-      required this.totalPrice,
-      required this.deliveryAddress,
-      required this.courierName,
-      required this.courierPrice,
-      required this.status});
+  const DataModel({
+    required this.items,
+    required this.totalPrice,
+    required this.deliveryAddress,
+    required this.courierName,
+    required this.courierPrice,
+    required this.status,
+    required this.buyerId,
+  });
 
   @override
   List<Object> get props {
@@ -67,6 +70,7 @@ class DataModel extends Equatable {
       courierName,
       courierPrice,
       status,
+      buyerId
     ];
   }
 
@@ -77,6 +81,7 @@ class DataModel extends Equatable {
     String? courierName,
     int? courierPrice,
     String? status,
+    int? buyerId,
   }) {
     return DataModel(
       items: items ?? this.items,
@@ -85,6 +90,7 @@ class DataModel extends Equatable {
       courierName: courierName ?? this.courierName,
       courierPrice: courierPrice ?? this.courierPrice,
       status: status ?? this.status,
+      buyerId: buyerId ?? this.buyerId,
     );
   }
 
@@ -96,6 +102,7 @@ class DataModel extends Equatable {
       'courierName': courierName,
       'courierPrice': courierPrice,
       'status': status,
+      'buyerId': buyerId,
     };
   }
 
@@ -111,6 +118,7 @@ class DataModel extends Equatable {
       courierName: map['courierName'] as String,
       courierPrice: map['courierPrice'] as int,
       status: map['status'] as String,
+      buyerId: map['buyerId'] as int,
     );
   }
 

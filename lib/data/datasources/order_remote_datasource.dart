@@ -53,6 +53,31 @@ class OrderRemoteDataSource {
     }
   }
 
+  Future<Either<String, List<OrderDetailResponseModel>>>
+      retrieveOrderByBuyerId() async {
+    try {
+      final token = await AuthLocalDatasource().useToken();
+      final user = await AuthLocalDatasource().getUser();
+      final response = await http.get(
+          Uri.parse(
+              '${Variables.baseUrl}api/orders?filters[buyerId][\$eq]=${user.id}'),
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer $token'
+          });
+      // print(response.body);
+
+      if (response.statusCode == 200) {
+        return Right(List.from(jsonDecode(response.body)['data'] ?? [])
+            .map((e) => OrderDetailResponseModel.fromJson(e))
+            .toList());
+      }
+      return const Left('Server error');
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   // add address
   Future<Either<String, AddAddressResponseModel>> addAddress(
       AddAddressRequestModel request) async {

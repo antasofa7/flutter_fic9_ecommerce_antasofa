@@ -13,15 +13,17 @@ class SummaryCartWidget extends StatelessWidget {
   final int? subTotalPrice, deliveryPrice, totalPrice;
   final List<ItemModel>? items;
   final Widget? ongkirWidget, totalWidget;
-  const SummaryCartWidget({
-    super.key,
-    this.subTotalPrice,
-    this.deliveryPrice,
-    this.totalPrice,
-    this.items,
-    this.ongkirWidget,
-    this.totalWidget,
-  });
+  final void Function()? onPressed;
+
+  const SummaryCartWidget(
+      {super.key,
+      this.subTotalPrice,
+      this.deliveryPrice,
+      this.totalPrice,
+      this.items,
+      this.ongkirWidget,
+      this.totalWidget,
+      this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -61,23 +63,8 @@ class SummaryCartWidget extends StatelessWidget {
               },
             ),
             builder: (context, state) => state.maybeWhen(
-              orElse: () => Button.filled(
-                  onPressed: items!.isEmpty
-                      ? null
-                      : () =>
-                          // context
-                          //     .read<OrderDetailBloc>()
-                          //     .add(OrderDetailEvent.getOrderDetail('14'))
-                          context.read<OrderBloc>().add(OrderEvent.order(
-                              OrderRequestModel(
-                                  data: DataModel(
-                                      items: items ?? [],
-                                      totalPrice: totalPrice!,
-                                      deliveryAddress: 'Surabaya',
-                                      courierName: 'JNT',
-                                      courierPrice: deliveryPrice!,
-                                      status: 'waiting')))),
-                  label: 'Bayar Sekarang'),
+              orElse: () =>
+                  Button.filled(onPressed: onPressed, label: 'Bayar Sekarang'),
               loading: () => const Center(child: CircularProgressIndicator()),
             ),
           )

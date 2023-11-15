@@ -205,6 +205,9 @@ mixin _$AttributesModel {
   String get courierName => throw _privateConstructorUsedError;
   int get courierPrice => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
+  String get noResi => throw _privateConstructorUsedError;
+  String get buyerId => throw _privateConstructorUsedError;
+  DateTime? get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -224,7 +227,10 @@ abstract class $AttributesModelCopyWith<$Res> {
       String deliveryAddress,
       String courierName,
       int courierPrice,
-      String status});
+      String status,
+      String noResi,
+      String buyerId,
+      DateTime? createdAt});
 }
 
 /// @nodoc
@@ -246,6 +252,9 @@ class _$AttributesModelCopyWithImpl<$Res, $Val extends AttributesModel>
     Object? courierName = null,
     Object? courierPrice = null,
     Object? status = null,
+    Object? noResi = null,
+    Object? buyerId = null,
+    Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
       items: freezed == items
@@ -272,6 +281,18 @@ class _$AttributesModelCopyWithImpl<$Res, $Val extends AttributesModel>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
+      noResi: null == noResi
+          ? _value.noResi
+          : noResi // ignore: cast_nullable_to_non_nullable
+              as String,
+      buyerId: null == buyerId
+          ? _value.buyerId
+          : buyerId // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ) as $Val);
   }
 }
@@ -290,7 +311,10 @@ abstract class _$$AttributesModelImplCopyWith<$Res>
       String deliveryAddress,
       String courierName,
       int courierPrice,
-      String status});
+      String status,
+      String noResi,
+      String buyerId,
+      DateTime? createdAt});
 }
 
 /// @nodoc
@@ -310,6 +334,9 @@ class __$$AttributesModelImplCopyWithImpl<$Res>
     Object? courierName = null,
     Object? courierPrice = null,
     Object? status = null,
+    Object? noResi = null,
+    Object? buyerId = null,
+    Object? createdAt = freezed,
   }) {
     return _then(_$AttributesModelImpl(
       items: freezed == items
@@ -336,6 +363,18 @@ class __$$AttributesModelImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
+      noResi: null == noResi
+          ? _value.noResi
+          : noResi // ignore: cast_nullable_to_non_nullable
+              as String,
+      buyerId: null == buyerId
+          ? _value.buyerId
+          : buyerId // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -349,7 +388,10 @@ class _$AttributesModelImpl implements _AttributesModel {
       this.deliveryAddress = '',
       this.courierName = '',
       this.courierPrice = 0,
-      this.status = ''})
+      this.status = '',
+      this.noResi = '-',
+      this.buyerId = '-',
+      this.createdAt})
       : _items = items;
 
   factory _$AttributesModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -380,10 +422,18 @@ class _$AttributesModelImpl implements _AttributesModel {
   @override
   @JsonKey()
   final String status;
+  @override
+  @JsonKey()
+  final String noResi;
+  @override
+  @JsonKey()
+  final String buyerId;
+  @override
+  final DateTime? createdAt;
 
   @override
   String toString() {
-    return 'AttributesModel(items: $items, totalPrice: $totalPrice, deliveryAddress: $deliveryAddress, courierName: $courierName, courierPrice: $courierPrice, status: $status)';
+    return 'AttributesModel(items: $items, totalPrice: $totalPrice, deliveryAddress: $deliveryAddress, courierName: $courierName, courierPrice: $courierPrice, status: $status, noResi: $noResi, buyerId: $buyerId, createdAt: $createdAt)';
   }
 
   @override
@@ -400,7 +450,11 @@ class _$AttributesModelImpl implements _AttributesModel {
                 other.courierName == courierName) &&
             (identical(other.courierPrice, courierPrice) ||
                 other.courierPrice == courierPrice) &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.noResi, noResi) || other.noResi == noResi) &&
+            (identical(other.buyerId, buyerId) || other.buyerId == buyerId) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt));
   }
 
   @JsonKey(ignore: true)
@@ -412,7 +466,10 @@ class _$AttributesModelImpl implements _AttributesModel {
       deliveryAddress,
       courierName,
       courierPrice,
-      status);
+      status,
+      noResi,
+      buyerId,
+      createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -436,7 +493,10 @@ abstract class _AttributesModel implements AttributesModel {
       final String deliveryAddress,
       final String courierName,
       final int courierPrice,
-      final String status}) = _$AttributesModelImpl;
+      final String status,
+      final String noResi,
+      final String buyerId,
+      final DateTime? createdAt}) = _$AttributesModelImpl;
 
   factory _AttributesModel.fromJson(Map<String, dynamic> json) =
       _$AttributesModelImpl.fromJson;
@@ -453,6 +513,12 @@ abstract class _AttributesModel implements AttributesModel {
   int get courierPrice;
   @override
   String get status;
+  @override
+  String get noResi;
+  @override
+  String get buyerId;
+  @override
+  DateTime? get createdAt;
   @override
   @JsonKey(ignore: true)
   _$$AttributesModelImplCopyWith<_$AttributesModelImpl> get copyWith =>

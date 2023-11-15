@@ -34,6 +34,11 @@ _$AttributesModelImpl _$$AttributesModelImplFromJson(
       courierName: json['courierName'] as String? ?? '',
       courierPrice: json['courierPrice'] as int? ?? 0,
       status: json['status'] as String? ?? '',
+      noResi: json['noResi'] as String? ?? '-',
+      buyerId: json['buyerId'] as String? ?? '-',
+      createdAt: json['createdAt'] == null
+          ? null
+          : DateTime.parse(json['createdAt'] as String),
     );
 
 Map<String, dynamic> _$$AttributesModelImplToJson(
@@ -45,6 +50,9 @@ Map<String, dynamic> _$$AttributesModelImplToJson(
       'courierName': instance.courierName,
       'courierPrice': instance.courierPrice,
       'status': instance.status,
+      'noResi': instance.noResi,
+      'buyerId': instance.buyerId,
+      'createdAt': instance.createdAt?.toIso8601String(),
     };
 
 _$ItemModelImpl _$$ItemModelImplFromJson(Map<String, dynamic> json) =>

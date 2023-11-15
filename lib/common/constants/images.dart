@@ -38,4 +38,8 @@ class Images {
   //icons.more
   static const String more = 'assets/images/more.png';
   static const String iconTrash = 'assets/icons/Trash.png';
+
+  static const String bag = 'assets/icons/Bag.png';
+  static const String location = 'assets/icons/Location.png';
+  static const String logout = 'assets/icons/logout.png';
 }

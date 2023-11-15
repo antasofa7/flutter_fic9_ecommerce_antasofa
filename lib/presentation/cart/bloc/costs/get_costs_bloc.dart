@@ -15,7 +15,7 @@ class GetCostsBloc extends Bloc<GetCostsEvent, GetCostsState> {
       final response =
           await RajaOngkirRemoteDataSource().retrieveCosts(event.request);
 
-      print('cost: $response');
+      // print('cost: $response');
 
       response.fold(
         (failure) => emit(_Failed(failure)),

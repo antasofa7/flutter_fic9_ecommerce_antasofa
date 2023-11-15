@@ -1,4 +1,6 @@
 import 'package:fic9_ecommerce_template_app/presentation/cart/bloc/costs/get_costs_bloc.dart';
+import 'package:fic9_ecommerce_template_app/presentation/order/bloc/bloc/cek_resi_bloc.dart';
+import 'package:fic9_ecommerce_template_app/presentation/order/bloc/buyerOrder/buyer_order_bloc.dart';
 import 'package:fic9_ecommerce_template_app/presentation/shippingAddress/bloc/addAddress/add_address_bloc.dart';
 import 'package:fic9_ecommerce_template_app/presentation/shippingAddress/bloc/city/city_bloc.dart';
 import 'package:fic9_ecommerce_template_app/presentation/shippingAddress/bloc/subdistrict/subdistrict_bloc.dart';
@@ -58,6 +60,12 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => GetCostsBloc(),
+        ),
+        BlocProvider(
+          create: (context) => BuyerOrderBloc(),
+        ),
+        BlocProvider(
+          create: (context) => CekResiBloc(),
         ),
       ],
       child: MaterialApp(

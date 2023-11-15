@@ -1,6 +1,5 @@
-import 'package:fic9_ecommerce_template_app/common/components/button.dart';
 import 'package:fic9_ecommerce_template_app/common/constants/images.dart';
-import 'package:fic9_ecommerce_template_app/data/datasources/auth_local_datasource.dart';
+import 'package:fic9_ecommerce_template_app/presentation/account/screens/account_page.dart';
 import 'package:fic9_ecommerce_template_app/presentation/cart/screens/cart_page.dart';
 import 'package:fic9_ecommerce_template_app/presentation/home/screens/home_page.dart';
 import 'package:flutter/material.dart';
@@ -19,18 +18,19 @@ class _DashboardPageState extends State<DashboardPage> {
 
   final List<Widget> _pages = [
     const HomePage(),
-    const Center(
-      child: Text('Explore Page'),
-    ),
+    // const Center(
+    //   child: Text('Explore Page'),
+    // ),
     const CartPage(),
-    Center(
-        child: Button.outlined(
-      label: 'Logout',
-      onPressed: () {
-        AuthLocalDatasource().removeToken();
-        AuthLocalDatasource().removeUser();
-      },
-    )),
+    const AccountPage()
+    // Center(
+    //     child: Button.outlined(
+    //   label: 'Logout',
+    //   onPressed: () {
+    //     AuthLocalDatasource().removeToken();
+    //     AuthLocalDatasource().removeUser();
+    //   },
+    // )),
   ];
 
   void _onItemTapped(int index) {
@@ -53,10 +53,10 @@ class _DashboardPageState extends State<DashboardPage> {
             icon: ImageIcon(AssetImage(Images.iconHome)),
             label: 'Home',
           ),
-          BottomNavigationBarItem(
-            icon: ImageIcon(AssetImage(Images.iconSearch)),
-            label: 'Explore',
-          ),
+          // BottomNavigationBarItem(
+          //   icon: ImageIcon(AssetImage(Images.iconSearch)),
+          //   label: 'Explore',
+          // ),
           BottomNavigationBarItem(
             icon: ImageIcon(AssetImage(Images.iconCart)),
             label: 'Cart',
